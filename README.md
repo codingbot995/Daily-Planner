@@ -1,7 +1,8 @@
 # Daily-Planner
-The Daily Planner is a web application designed to help users efficiently plan and track their daily activities. It allows users to log various activities, rate their mood, and monitor habits for better productivity and well-being.
+The Daily Planner is a web application designed to help users efficiently plan and track their daily activities.
+It allows users to log various activities, rate their mood, and monitor habits for better productivity and well-being.
 
-#Features
+# Features
 
 Add and track daily activities
 
@@ -13,7 +14,7 @@ Store data for future reference
 
 User-friendly interface with a clean design
 
-#Technologies Used
+# Technologies Used
 
 HTML
 
@@ -39,7 +40,7 @@ cd daily-planner
 
 Open **index.html** in a browser.
 
-#Usage
+# Usage
 
 Fill in the daily planner form by selecting activities completed and rating happiness levels.
 
@@ -47,11 +48,11 @@ Click "Submit" to log the details.
 
 View the updated activity register.
 
-#Contribution
+# Contribution
 
 Feel free to contribute by forking the repository and submitting pull requests.
 
-#License
+# License
 
 This project is licensed under the MIT License.
 
