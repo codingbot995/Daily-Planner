@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Planner</title>
+</head>
+<style>
+    /* Basic styles for demonstration - Improve as needed */
+    body { font-family: sans-serif; }
+    .planner { margin-bottom: 20px; }
+    .register { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+    th { background-color: #f0f0f0; }
+    /* Added for fixed header on mobile */
+    .register thead th {
+      position: -webkit-sticky; /* Safari */
+      position: sticky;
+      top: 0;
+      background-color: #f0f0f0; /* Ensure the header is visible */
+      z-index: 1; /* Ensure the header is above the scrolling content */
+    }
+    .heading {
+        font-size: 40px;
+        font-weight: bold;
+        color: #ff5733; /* Reddish color */
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 2px;
+      }
+    #submit-button{
+        background-color: #ffcc00;
+  color: black;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+    }
+    #submit-button:active{
+        transform: scale(0.95);
+    }
+    .register thead th:first-child {
+        left: 0;
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        z-index: 2;
+        background-color: #f0f0f0;
+    }
+    .register tbody th {
+      left: 0;
+      position: -webkit-sticky; /* Safari */
+      position: sticky;
+      background-color: #fff;
+      z-index: 1;
+    }
+
+    #daily-planner-form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+      }
+      
+      /* Label styling */
+      #daily-planner-form label {
+        font-size: 16px;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 5px;
+      }
+      
+      /* Input and select styling */
+      #daily-planner-form input,
+      #daily-planner-form select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      
+      /* Checkbox styling */
+      #daily-planner-form input[type="checkbox"] {
+        width: auto;
+        margin-right: 10px;
+        transform: scale(1.2);
+      }
+      
+      /* Number input styling */
+      #daily-planner-form input[type="number"] {
+        width: 100px;
+        text-align: center;
+      }
+      
+    @media (max-width: 600px) {
+      .register { overflow-x: auto; }
+      .register thead th {
+          position: -webkit-sticky;  /* Safari */
+          position: sticky;
+          top: 0;
+          background-color: #f0f0f0;
+          z-index: 1;
+      }
+      .register thead th:first-child{
+         left: 0;
+         position: -webkit-sticky;  /* Safari */
+         position: sticky;
+         z-index: 3;
+         background-color: #f0f0f0;
+      }
+      .register tbody th{
+          left: 0;
+          position: -webkit-sticky;  /* Safari */
+          position: sticky;
+          z-index: 2;
+          background-color: #fff;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="planner">
+      <h2 class="heading">Daily Planner for your Day Today Plans</h2>
+      <form id="daily-planner-form">
+          <label>Happy score (start):</label>
+          <select id="happy-score-start">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+          </select><br><br>
+
+          <label>Shower:</label>
+          <input type="checkbox" name="shower"><br>
+
+          <label>Sleep:</label>
+          <input type="checkbox" name="sleep"><br>
+
+          <label>Make bed:</label>
+          <input type="checkbox" name="make-bed"><br>
+
+          <label>Meds:</label>
+          <input type="checkbox" name="meds"><br>
+
+          <label>Breakfast:</label>
+          <input type="checkbox" name="breakfast"><br>
+
+          <label>Clean kitchen:</label>
+          <input type="checkbox" name="clean-kitchen"><br>
+
+          <label>Rubbish out:</label>
+          <input type="checkbox" name="rubbish-out"><br>
+
+          <label>Walking:</label>
+          <input type="checkbox" name="walking"><br>
+
+          <label>Sketching:</label>
+          <input type="checkbox" name="sketching"><br>
+
+          <label>Crosswords:</label>
+          <input type="checkbox" name="crosswords"><br>
+
+          <label>Friends/Social:</label>
+          <input type="number" name="friends-social" value="0" min="0"><br><br>
+
+          <label>Cook/eat dinner:</label>
+          <input type="checkbox" name="cook-eat-dinner"><br>
+
+          <label>Healthy diet:</label>
+          <select id="healthy-diet">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+          </select><br><br>
+
+          <label>Beers:</label>
+          <input type="number" name="beers" value="0" min="0"><br><br>
+
+          <label>Folkies:</label>
+          <input type="number" name="folkies" value="0" min="0"><br><br>
+
+          <label>Wine-free:</label>
+          <input type="checkbox" name="wine-free"><br>
+
+          <label>Cigarettes:</label>
+          <input type="number" name="cigarettes" value="0" min="0"><br><br>
+
+          <label>Choof:</label>
+          <input type="number" name="choof" value="0" min="0"><br><br>
+
+           <label>Happy score (end):</label>
+          <select id="happy-score-end">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+          </select><br><br>
+
+          <button id="submit-button">SUBMIT</button>
+      </form>
+  </div>
+
+  <div class="register">
+      <h2>Register</h2>
+      <table id="register-table">
+          <thead>
+              <tr>
+                  <th></th>
+                 
+                  </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th>Happy score (start)</th>
+                  
+              </tr>
+              <tr>
+                  <th>Shower</th>
+                  
+              </tr>
+              <tr>
+                  <th>Sleep</th>
+                  
+              </tr>
+              <tr>
+                  <th>Make bed</th>
+                  
+              </tr>
+              <tr>
+                  <th>Meds</th>
+                  
+              </tr>
+              <tr>
+                  <th>Breakfast</th>
+                 
+              </tr>
+               <tr>
+                  <th>Clean kitchen</th>
+                  
+              </tr>
+               <tr>
+                  <th>Rubbish out</th>
+                  
+              </tr>
+              <tr>
+                  <th>Walking</th>
+                  
+              </tr>
+              <tr>
+                  <th>Sketching</th>
+                 
+              </tr>
+              <tr>
+                  <th>Crosswords</th>
+                  
+              </tr>
+              <tr>
+                  <th>Friends/Social</th>
+                 
+              </tr>
+              <tr>
+                  <th>Cook/eat dinner</th>
+                 
+              </tr>
+              <tr>
+                  <th>Healthy diet</th>
+                  
+              </tr>
+              <tr>
+                  <th>Beers</th>
+                  
+              </tr>
+              <tr>
+                  <th>Folkies</th>
+                  
+              </tr>
+              <tr>
+                  <th>Wine-free</th>
+                 
+              </tr>
+              <tr>
+                  <th>Cigarettes</th>
+                  
+              </tr>
+              <tr>
+                  <th>Choof</th>
+                 
+              </tr>
+               <tr>
+                  <th>Happy score (end)</th>
+                  
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
+</body>
+<script src="script.js"></script>
+</html>
